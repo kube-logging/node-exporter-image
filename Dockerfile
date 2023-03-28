@@ -1,4 +1,4 @@
-FROM ghcr.io/banzaicloud/custom-runner:v0.2.0 as custom-runner
+FROM ghcr.io/kube-logging/custom-runner:v0.5.0 as custom-runner
 
 FROM quay.io/prometheus/node-exporter:master
 
