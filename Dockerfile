@@ -1,4 +1,4 @@
-FROM ghcr.io/kube-logging/custom-runner:v0.6.0 as custom-runner
+FROM ghcr.io/kube-logging/custom-runner:v0.7.0 as custom-runner
 
 FROM quay.io/prometheus/node-exporter:master
 
