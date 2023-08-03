@@ -15,5 +15,10 @@ while true; do
     du -sb ${BUFFER_PATH} | sed -ne 's/\\/\\\\/;s/"/\\"/g;s/^\([0-9]\+\)\t\(.*\)$/logging_node_agent_buffer_size_bytes{entity="\2", host="'$(hostname)'"} \1/p' >> /prometheus/node_exporter/textfile_collector/logging_node_agent_buffer_size_bytes.prom.$$
     mv /prometheus/node_exporter/textfile_collector/logging_node_agent_buffer_size_bytes.prom.$$ /prometheus/node_exporter/textfile_collector/logging_node_agent_buffer_size_bytes.prom
 
+    echo "# HELP logging_node_agent_buffer_files File count" > /prometheus/node_exporter/textfile_collector/logging_node_agent_buffer_files.prom
+    echo "# TYPE logging_node_agent_buffer_files gauge" >> /prometheus/node_exporter/textfile_collector/logging_node_agent_buffer_files.prom
+    echo -e "$(find "${BUFFER_PATH}" -type f 2>/dev/null | wc -l)\t${BUFFER_PATH}" | sed -ne 's/\\/\\\\/;s/"/\\"/g;s/^\([0-9]\+\)\t\(.*\)$/logging_node_agent_buffer_files{entity="\2", host="'$(hostname)'"} \1/p' >> /prometheus/node_exporter/textfile_collector/logging_node_agent_buffer_files.prom.$$
+    mv /prometheus/node_exporter/textfile_collector/logging_node_agent_buffer_files.prom.$$ /prometheus/node_exporter/textfile_collector/logging_node_agent_buffer_files.prom
+
     sleep 60
 done
