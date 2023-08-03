@@ -20,5 +20,5 @@ while true; do
     echo -e "$(find "${BUFFER_PATH}" -type f 2>/dev/null | wc -l)\t${BUFFER_PATH}" | sed -ne 's/\\/\\\\/;s/"/\\"/g;s/^\([0-9]\+\)\t\(.*\)$/logging_node_agent_buffer_files{entity="\2", host="'$(hostname)'"} \1/p' >> /prometheus/node_exporter/textfile_collector/logging_node_agent_buffer_files.prom.$$
     mv /prometheus/node_exporter/textfile_collector/logging_node_agent_buffer_files.prom.$$ /prometheus/node_exporter/textfile_collector/logging_node_agent_buffer_files.prom
 
-    sleep 60
+    sleep 30
 done
